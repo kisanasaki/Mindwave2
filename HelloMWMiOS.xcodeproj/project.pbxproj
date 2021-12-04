@@ -409,7 +409,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "mediaAnalysisLab-eegApp2021-0406-3";
+				PRODUCT_BUNDLE_IDENTIFIER = "mediaAnalysisLab-eegApp2021-1204";
 				PRODUCT_NAME = HelloMWMiOS;
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -449,7 +449,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "mediaAnalysisLab-eegApp2021-0406-3";
+				PRODUCT_BUNDLE_IDENTIFIER = "mediaAnalysisLab-eegApp2021-1204";
 				PRODUCT_NAME = HelloMWMiOS;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

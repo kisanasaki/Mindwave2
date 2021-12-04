@@ -258,9 +258,12 @@ NSDate *startDate;
         btnRec = NO;
         [sender setTitle:@"記録開始" forState:UIControlStateNormal];
         [sender setBackgroundColor:[UIColor greenColor] ];
-        
         self.recordTimer.text = @"00:00:00";
         outBlinkData = YES;
+        //脳波データ送信時の 変数の連結を初期化
+        Raw = [NSMutableString stringWithString:@""];
+        rawdataCnt = 0;
+        
     }
     else if (btnRec == NO){
         btnRec = YES;
@@ -339,6 +342,9 @@ NSDate *startDate;
     [ekgLineView addValue:sample]; // ekgLineView（グラフ）にRawdataが追加される
     NSString *str_sample = [NSString stringWithFormat:@"%d",sample];
     
+    if (btnRec == NO){
+        //Raw = [NSMutableString stringWithString:@""];
+    }
     // 記録開始ボタンがONのときの処理
     if (btnRec == YES){
         // 記録時間の表示
@@ -351,14 +357,17 @@ NSDate *startDate;
         NSString *str2 = [str_sample stringByAppendingString:@"\n"];
         [Raw appendString:str2];
         rawdataCnt++;
+        //**計測したい時間に合わせて変更してねifの中
         //5120(10秒に1回)
         //10240(20秒
         //15360(30秒に1回)
         //20480(40秒
         //25600(50秒
         //30720(1分に1回)
+        //35840 70s
         //153600=512*60*5(5分に1回)
         //307200(10分に1回)
+        //51200
         if(rawdataCnt >= 5120){
             // SQLiteで保存（したい）
             NSDate *now = [NSDate date];
@@ -369,10 +378,12 @@ NSDate *startDate;
             // パラメータの作成
             //NSString *url = @"https://clicker.tokyo/api/rawdata";
             //NSString *param = [NSString stringWithFormat:@"Raw=%@", Raw];
-            NSString *url = @"https://clicker.tokyo/api/rawdata2";
+           // NSString *url = @"https://clicker.tokyo/api/rawdata2";
+            NSString *url = @"https://smart-saga-0396.lovesick.jp/clicker/clikcer/public/api/rawdata2";
+            
             //NSString *param = [NSString stringWithFormat:@"Raw=%@&User_id=%@", Raw,user_num];
-            //数字をスマホの数字に合わせて変更してビルドする(@"7"のところ)
-            NSString *param = [NSString stringWithFormat:@"Raw=%@&User_id=%@", Raw,@"8"];
+            //**数字をスマホの数字に合わせて変更してビルドする(@"7"のところ)
+            NSString *param = [NSString stringWithFormat:@"Raw=%@&User_id=%@", Raw,@"36"];
             // リクエストの生成
             NSMutableURLRequest * request;
             request = [NSMutableURLRequest new];
